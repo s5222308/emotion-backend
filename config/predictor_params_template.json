@@ -1,0 +1,15 @@
+{
+  "segment_duration": 0.5,
+  "face_conf": 0.75,
+  "emotion_conf": 0.5,
+  "frame_step": 10,
+  "use_openface": true,
+  "use_libreface": true,
+  "processing_mode": "sparse",
+  "temporal_context_window": 0.5,
+  "dense_window": false,
+  "window_size": 1,
+  "audio_sliding_window": false,
+  "audio_window_size": 1,
+  "audio_window_overlap": 0
+}

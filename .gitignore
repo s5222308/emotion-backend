@@ -1,0 +1,13 @@
+/env
+/models
+/labelstudio_data
+__pycache__/
+*.py[cod]
+app
+./app
+/app
+# Ignore actual config files (keep templates only)
+/config/*.txt
+/config/*.json
+!/config/*_template.json
+!/config/*_template.txt

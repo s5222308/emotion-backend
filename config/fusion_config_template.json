@@ -1,0 +1,10 @@
+{
+  "beta": 0.8,
+  "min_duration": 0.5,
+  "fps": 30,
+  "floor_prob": 1e-06,
+  "debug": false,
+  "video_bias": 1,
+  "audio_bias": 1,
+  "libreface_bias": 1
+}

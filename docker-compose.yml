@@ -1,0 +1,79 @@
+services:
+  label-studio:
+    image: heartexlabs/label-studio:latest
+    platform: linux/amd64
+    container_name: label-studio
+    ports:
+      - "8026:8080"
+    environment:
+      - LOCAL_FILES_SERVING_ENABLED=true
+      - DATA_UPLOAD_MAX_NUMBER_FILES=100
+      - DATA_UPLOAD_MAX_MEMORY_SIZE=2147483647
+      - DJANGO_LOG_LEVEL=WARNING
+      - LOG_LEVEL=WARNING
+      - LABEL_STUDIO_DISABLE_SIGNUP_WITHOUT_LINK=true
+    volumes:
+      - ./labelstudio_data:/label-studio/data
+      - ./entrypoint-labelstudio.sh:/entrypoint-labelstudio.sh
+    entrypoint: ["/bin/bash", "/entrypoint-labelstudio.sh"]
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  emotion-backend:
+    container_name: emotion-backend
+    build: .
+    ports:
+      - "9090:9090"
+    volumes:
+      - .:/app
+      - ./config:/config
+      - ./labelstudio_data:/label-studio/data
+
+  openface-service:
+    build: ./Z_AU-gaze-service
+    container_name: openface-service
+    ports:
+      - "9000:9000"
+    restart: unless-stopped
+    volumes:
+      - ./labelstudio_data:/label-studio/data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    
+  libreface-service:
+    build: ./Z_libreface
+    container_name: libreface-service
+    ports:
+      - "9001:9001"
+    restart: unless-stopped
+    shm_size: "2g"
+    volumes:
+      # share Label Studio data (so video_path is visible inside libreface)
+      - ./labelstudio_data:/label-studio/data
+
+      # persist torch cache (resnet18, etc.)
+      - libreface-cache:/root/.cache
+
+      # persist LibreFace model weights
+      - libreface-weights:/app/weights_libreface
+
+  annotation-tool:
+    build: ./3821ICT-annotation-tool
+    container_name: annotation-tool
+    ports:
+      - "3000:5173"
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ./3821ICT-annotation-tool:/app
+
+volumes:
+  libreface-cache:
+  libreface-weights:

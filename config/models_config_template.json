@@ -1,0 +1,5 @@
+{
+  "face": "yolov11s-face.pt",
+  "face_emotion": "yolo11s-emotion.pt",
+  "audio_emotion": "wave2vec-english-speech-recognition-by-r-f"
+}

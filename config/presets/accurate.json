@@ -1,0 +1,16 @@
+{
+  "beta": 0.85,
+  "min_duration": 0.5,
+  "fps": 30,
+  "floor_prob": 1e-06,
+  "debug": false,
+  "video_bias": 1.0,
+  "audio_bias": 1.0,
+  "au_bias": 1.5,
+  "use_au_gaze": true,
+  "dense_window": true,
+  "window_size": 1.0,
+  "audio_sliding_window": true,
+  "audio_window_size": 1.0,
+  "audio_window_overlap": 0.5
+}

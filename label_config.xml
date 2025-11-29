@@ -1,0 +1,19 @@
+<View> <!-- Video player --> 
+<Video name="video" value="$video" frameRate="30"/> 
+<Audio name="audio" value="$video" /> <!-- Rectangles for faces in video --> 
+<VideoRectangle name="box" toName="video" model_tracker="botsort" model_conf="0.75" model_iou="0.7" /> 
+<!-- Labels for emotions --> 
+<Labels name="label" toName="video"> 
+    <Label value="happy" background="#FFD700"/>
+    <Label value="surprise" background="#FF69B4"/>
+    <Label value="neutral" background="#808080"/>
+    <Label value="disgust" background="#556B2F"/>
+    <Label value="content" background="#98FB98"/>
+    <Label value="sad" background="#4169E1"/>
+    <Label value="fear" background="#800080"/>
+    <Label value="anger" background="#DC143C"/>
+    <Label value="calm" background="#87CEEB"/>
+</Labels> 
+<TextArea name="audio_table" toName="video" readonly="true" perRegion="false" maxSubmissions="1" rows="10"/>
+<TextArea name="video_table" toName="video" readonly="true" perRegion="false" maxSubmissions="1" rows="10"/>
+</View>

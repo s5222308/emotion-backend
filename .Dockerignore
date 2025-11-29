@@ -1,0 +1,12 @@
+./envenv
+.env
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+*.swp
+*.egg-info
+*.vscode
+.3821ICT-annotation-tool
+./3821ICT-annotation-tool
+/3821ICT-annotation-tool
