@@ -22,6 +22,9 @@ if [ ! -f config/labelstudio_api_key.txt ]; then
     cp config/labelstudio_api_key_template.txt config/labelstudio_api_key.txt
 fi
 
+# Create labelstudio_data directory if it doesn't exist
+mkdir -p labelstudio_data
+
 echo "Fixing permissions..."
 sudo chmod -R 777 labelstudio_data/
 
