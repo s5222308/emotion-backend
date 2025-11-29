@@ -29,4 +29,4 @@ echo "Fixing permissions..."
 sudo chmod -R 777 labelstudio_data/
 
 echo "Starting Docker Compose..."
-docker compose up
+DOCKER_BUILDKIT=0 COMPOSE_DOCKER_CLI_BUILD=0 docker compose up --build
