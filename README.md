@@ -48,7 +48,7 @@
    - Open Label Studio at http://localhost:3000/label-studio
    - Create account / login
    - Go to Account & Settings, then Access Token
-   - Genereate & copy the token
+   - Generate & copy the token
    - Paste it in the Dashboard at http://localhost:3000/dashboard
    - Click Save
 
