@@ -1,52 +1,85 @@
-### Clone this repo
-``git clone <repo-url>``
+## Installation
 
+### Prerequisites
+- Docker and Docker Compose (v2.20 or later)
+- Git
+- Node.js (v20 or later) and npm
+- At least 20GB of free disk space
 
-### Pull in the submodule
-`` git submodule update --init --recursive  ``
+### Installation Steps
 
-
-### Change directory into the submodule
-`` cd 3821ICT-annotation-tool``
-
-### Run this command(it installs node modules and vite etc)
-`` npm install ``
-
-### Add models folder, structure is 
-Models/face_models, emotion_models, audio_models
-
-``copy and paste models folder``
-
-face_models and emotion_models have to be Yolo based. Emotion models must output the 7 emotions(happy, content, sad, disgust, anger, neutral and suprised). The audio_models have to be similar as well in terms of output, but they need to be classficiation based. Search on huggingface for audio_classification etc.
-
-
-### To start
-``./start.sh`` , then connect to localhost:3000
-
-
-#### Mapping system: The function below shows only the acceptable outputs for audio models, meaning a model that would output SUR, is acceptable, and will be normalized to fit the systme
-
+1. **Clone the repository**
+```bash
+   git clone https://github.com/s5222308/emotion-backend.git
+   cd emotion-backend
 ```
-def normalize_labels(audio_results):
-    AUDIO_TO_VIDEO_LABEL_MAP = {
-        "fearful": "fear",
-        "surprised": "surprise",
-        "angry": "anger",
-        "disgusted": "disgust",
-        "sad": "sad",
-        "happy": "happy",
-        "neutral": "neutral",
-        "content": "content",
-        "ANG": "anger",
-        "CAL": "calm",
-        "DIS": "disgust",
-        "FEA": "fear",
-        "HAP": "happy",
-        "NEU": "neutral",
-        "SAD": "sad",
-        "SUR": "surprise"
-    }
-    for item in audio_results:
-        item['emotion_label'] = AUDIO_TO_VIDEO_LABEL_MAP.get(item['emotion_label'],item['emotion_label'])
-    return audio_results
+
+2. **Install frontend dependencies**
+```bash
+   cd 3821ICT-annotation-tool
+   npm install
+   cd ..
+```
+
+3. **Add model files**
+   
+   Contact your system administrator to obtain the `models/` folder and place it in the project root:
+```
+   emotion-backend/
+   ├── models/
+   │   ├── face_models/
+   │   │   ├── yolov11s-face.pt
+   │   │   └── yolo11s-emotion.pt
+   │   └── audio_models/
+   │       └── wave2vec-english-speech-recognition-by-r-f/
+```
+
+4. **Start the system**
+```bash
+   ./start.sh
+```
+
+5. **Access the application**
+   - Annotation Tool: http://localhost:3000
+   - Label Studio: http://localhost:8026
+
+6. **Configure Label Studio API Key**
+   - Open Label Studio at http://localhost:8026
+   - Create account / login
+   - Go to Account & Settings → Access Token
+   - Copy the token
+   - Paste it in the Dashboard at http://localhost:3000
+   - Click Save
+
+## Model Requirements
+
+### Face & Emotion Models
+- Must be YOLO-based (.pt format)
+- Emotion models must output 7 emotions: happy, content, sad, disgust, anger, neutral, surprise
+
+### Audio Models
+- Must be classification-based (e.g., from HuggingFace)
+- Output labels are automatically normalized to match the system
+
+### Audio Label Normalization
+The system accepts various audio model outputs and normalizes them:
+```python
+AUDIO_TO_VIDEO_LABEL_MAP = {
+    "fearful": "fear",
+    "surprised": "surprise",
+    "angry": "anger",
+    "disgusted": "disgust",
+    "sad": "sad",
+    "happy": "happy",
+    "neutral": "neutral",
+    "content": "content",
+    "ANG": "anger",
+    "CAL": "calm",
+    "DIS": "disgust",
+    "FEA": "fear",
+    "HAP": "happy",
+    "NEU": "neutral",
+    "SAD": "sad",
+    "SUR": "surprise"
+}
 ```
