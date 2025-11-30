@@ -41,14 +41,15 @@
 
 5. **Access the application**
    - Annotation Tool: http://localhost:3000
-   - Label Studio: http://localhost:8026
+   - Dashboard: http://localhost:3000/dashboard
+   - Label Studio: http://localhost:3000/label-studio
 
 6. **Configure Label Studio API Key**
-   - Open Label Studio at http://localhost:8026
+   - Open Label Studio at http://localhost:3000/label-studio
    - Create account / login
-   - Go to Account & Settings → Access Token
-   - Copy the token
-   - Paste it in the Dashboard at http://localhost:3000
+   - Go to Account & Settings, then Access Token
+   - Genereate & copy the token
+   - Paste it in the Dashboard at http://localhost:3000/dashboard
    - Click Save
 
 ## Model Requirements
