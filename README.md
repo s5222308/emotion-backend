@@ -47,8 +47,9 @@
 6. **Configure Label Studio API Key**
    - Open Label Studio at http://localhost:3000/label-studio
    - Create account / login
-   - Go to Account & Settings, then Access Token
-   - Generate & copy the token
+   - Click on your profile picture in the top right corner
+   - Go to Account & Settings, then go to Personal Access Token
+   - Create New Token and copy it
    - Paste it in the Dashboard at http://localhost:3000/dashboard
    - Click Save
 
